@@ -4,13 +4,8 @@ import operation
 import ai
 import sys
 from multiprocessing import Process, Queue
+from const import *
 
-BOARD_WIDTH = BOARD_HEIGHT = 720
-MOVE_LOG_PANEL_WIDTH = 250
-MOVE_LOG_PANEL_HEIGHT = BOARD_HEIGHT
-DIMENSION = 8
-SQUARE_SIZE = BOARD_HEIGHT // DIMENSION
-MAX_FPS = 60
 IMAGES = {}
 
 
