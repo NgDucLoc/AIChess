@@ -8,7 +8,7 @@ from piece import *
 from gameState import *
 
 
-def main():
+def playWithPerson():
     p.init()
     screen = p.display.set_mode(
         (BOARD_WIDTH + MOVE_LOG_PANEL_WIDTH, BOARD_HEIGHT))
@@ -24,16 +24,16 @@ def main():
     square_selected = ()
     player_clicks = []  # this will keep track of player clicks (two tuples)
     game_over = False
-    ai_thinking = False
+    # ai_thinking = False
     move_undone = False
     move_finder_process = None
     move_log_font = p.font.SysFont("Arial", 14, False, False)
     player_one = True  # if a human is playing white, then this will be True, else False
-    player_two = False  # if a hyman is playing white, then this will be True, else False
+    player_two = False  # if a human is playing black, then this will be True, else False
 
     while running:
-        human_turn = (game_state.white_to_move and player_one) or (
-            not game_state.white_to_move and player_two)
+        # human_turn = (game_state.white_to_move and player_one) or (
+        #     not game_state.white_to_move and player_two)
         for e in p.event.get():
             if e.type == p.QUIT:
                 p.quit()
@@ -52,7 +52,7 @@ def main():
                         square_selected = (row, col)
                         # append for both 1st and 2nd click
                         player_clicks.append(square_selected)
-                    if len(player_clicks) == 2 and human_turn:  # after 2nd click
+                    if len(player_clicks) == 2:  # after 2nd click
                         move = operation.Move(
                             player_clicks[0], player_clicks[1], game_state.board)
                         for i in range(len(valid_moves)):
@@ -72,9 +72,9 @@ def main():
                     move_made = True
                     animate = False
                     game_over = False
-                    if ai_thinking:
-                        move_finder_process.terminate()
-                        ai_thinking = False
+                    # if ai_thinking:
+                    #     move_finder_process.terminate()
+                    #     ai_thinking = False
                     move_undone = True
                 if e.key == p.K_r:  # reset the game when 'r' is pressed
                     game_state = operation.GameState()
@@ -84,28 +84,28 @@ def main():
                     move_made = False
                     animate = False
                     game_over = False
-                    if ai_thinking:
-                        move_finder_process.terminate()
-                        ai_thinking = False
+                    # if ai_thinking:
+                    #     move_finder_process.terminate()
+                    #     ai_thinking = False
                     move_undone = True
 
         # AI move finder
-        if not game_over and not human_turn and not move_undone:
-            if not ai_thinking:
-                ai_thinking = True
-                return_queue = Queue()  # used to pass data between threads
-                move_finder_process = Process(target=ai.findBestMove, args=(
-                    game_state, valid_moves, return_queue))
-                move_finder_process.start()
-
-            if not move_finder_process.is_alive():
-                ai_move = return_queue.get()
-                if ai_move is None:
-                    ai_move = ai.findRandomMove(valid_moves)
-                game_state.makeMove(ai_move)
-                move_made = True
-                animate = True
-                ai_thinking = False
+        # if not game_over and not human_turn and not move_undone:
+        #     if not ai_thinking:
+        #         ai_thinking = True
+        #         return_queue = Queue()  # used to pass data between threads
+        #         move_finder_process = Process(target=ai.findBestMove, args=(
+        #             game_state, valid_moves, return_queue))
+        #         move_finder_process.start()
+        #
+        #     if not move_finder_process.is_alive():
+        #         ai_move = return_queue.get()
+        #         if ai_move is None:
+        #             ai_move = ai.findRandomMove(valid_moves)
+        #         game_state.makeMove(ai_move)
+        #         move_made = True
+        #         animate = True
+        #         ai_thinking = False
 
         if move_made:
             if animate:
@@ -134,4 +134,3 @@ def main():
 
         clock.tick(MAX_FPS)
         p.display.flip()
-

@@ -1,6 +1,6 @@
 
-from playState import *
-
+from playWithAIState import *
+from playWithPersonState import *
 # def main():
 #     p.init()
 #     screen = p.display.set_mode(
@@ -135,4 +135,4 @@ from playState import *
 
 
 if __name__ == "__main__":
-    main()
+    playWithPerson()
