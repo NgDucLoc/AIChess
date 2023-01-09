@@ -2,12 +2,13 @@ import pygame, sys
 from pygame.locals import *
 from tkinter import *
 import os
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
 from playWithAIState import *
 from playWithPersonState import *
 def menuState():
     pygame.init()
     WHITE = (255, 255, 255)
-    init_background = pygame.image.load("D:/menu_chess/Menu_State/assets/menu_state.jpg")
+    init_background = pygame.image.load("ChessAI/images/menu_state.jpg")
     screen = pygame.display.set_mode((567, 589))
 
     running = True
@@ -18,7 +19,7 @@ def menuState():
     
         screen.blit(init_background, (0, 0))
         if state == "init":
-            titleSize = pygame.font.Font("D:/menu_chess/Menu_State/gameFont.ttf", 25)
+            titleSize = pygame.font.Font("ChessAI/images/gameFont.ttf", 25)
             titleText = titleSize.render('Nhan Enter de choi', True, WHITE)
             titleRect = titleText.get_rect(center=(300, 400))
             screen.blit(titleText, titleRect)
@@ -40,8 +41,10 @@ def menuState():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_1 and state == "init":
                     playWithAI()
-                elif event.key == pygame.K_2 and state == "init":
+                if event.key == pygame.K_2 and state == "init":
                     playWithPerson()
+                
+
 
 
 
