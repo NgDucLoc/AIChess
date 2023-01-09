@@ -8,7 +8,7 @@ from playWithPersonState import *
 def menuState():
     pygame.init()
     WHITE = (255, 255, 255)
-    init_background = pygame.image.load("ChessAI/images/menu_state.jpg")
+    init_background = pygame.image.load("images/menu_state.jpg")
     screen = pygame.display.set_mode((567, 589))
 
     running = True
@@ -19,7 +19,7 @@ def menuState():
     
         screen.blit(init_background, (0, 0))
         if state == "init":
-            titleSize = pygame.font.Font("ChessAI/images/gameFont.ttf", 25)
+            titleSize = pygame.font.Font("images/gameFont.ttf", 25)
             titleText = titleSize.render('Nhan Enter de choi', True, WHITE)
             titleRect = titleText.get_rect(center=(300, 400))
             screen.blit(titleText, titleRect)
