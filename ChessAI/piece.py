@@ -1,5 +1,9 @@
 import pygame as p
 from const import *
+import os
+
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
 
 
 IMAGES = {}
