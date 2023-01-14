@@ -51,7 +51,7 @@ def drawMoveLog(screen, game_state, font):
             move_string += str(move_log[i + 1]) + "  "
         move_texts.append(move_string)
 
-    moves_per_row = 3
+    moves_per_row = 1
     padding = 5
     line_spacing = 2
     text_y = padding
@@ -68,10 +68,20 @@ def drawMoveLog(screen, game_state, font):
 
 
 def drawEndGameText(screen, text):
-    font = p.font.SysFont("Helvetica", 32, True, False)
-    text_object = font.render(text, False, p.Color("gray"))
+    font = p.font.SysFont("Helvetica", 64, True, False)
+    text_object = font.render(text, False, p.Color("red"))
     text_location = p.Rect(0, 0, BOARD_WIDTH, BOARD_HEIGHT).move(BOARD_WIDTH / 2 - text_object.get_width() / 2,
                                                                  BOARD_HEIGHT / 2 - text_object.get_height() / 2)
+    screen.blit(text_object, text_location)
+    text_object = font.render(text, False, p.Color('black'))
+    screen.blit(text_object, text_location.move(2, 2))
+
+
+def drawText(screen, text):
+    font = p.font.SysFont("Verdana", 32, True, False)
+    text_object = font.render(text, False, p.Color("red"))
+    text_location = p.Rect(0, 0, BOARD_WIDTH, BOARD_HEIGHT).move(BOARD_WIDTH,
+                                                                 3 * BOARD_HEIGHT / 4 - text_object.get_height() / 2)
     screen.blit(text_object, text_location)
     text_object = font.render(text, False, p.Color('black'))
     screen.blit(text_object, text_location.move(2, 2))

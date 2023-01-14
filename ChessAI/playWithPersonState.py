@@ -6,6 +6,7 @@ from multiprocessing import Process, Queue
 from board import *
 from piece import *
 from gameState import *
+from playWithAIState import *
 
 
 def playWithPerson():
@@ -13,6 +14,7 @@ def playWithPerson():
     screen = p.display.set_mode(
         (BOARD_WIDTH + MOVE_LOG_PANEL_WIDTH, BOARD_HEIGHT))
     clock = p.time.Clock()
+    
     screen.fill(p.Color("white"))
     game_state = operation.GameState()
     valid_moves = game_state.getValidMoves()
@@ -31,6 +33,7 @@ def playWithPerson():
     player_one = True  # if a human is playing white, then this will be True, else False
     player_two = False  # if a human is playing black, then this will be True, else False
 
+    count = 1
     while running:
         # human_turn = (game_state.white_to_move and player_one) or (
         #     not game_state.white_to_move and player_two)
@@ -117,16 +120,21 @@ def playWithPerson():
             move_undone = False
 
         drawGameState(screen, game_state, valid_moves, square_selected)
-
         if not game_over:
             drawMoveLog(screen, game_state, move_log_font)
+            print(count)
+            if count ==1 :
+                count = 0
+                drawText(screen, " Đến lượt bạn")
+            
 
+        
         if game_state.checkmate:
             game_over = True
             if game_state.white_to_move:
-                drawEndGameText(screen, "Black wins by checkmate")
+                drawEndGameText(screen, "Bạn thua")
             else:
-                drawEndGameText(screen, "White wins by checkmate")
+                drawEndGameText(screen, "Bạn thắng")
 
         elif game_state.stalemate:
             game_over = True

@@ -135,4 +135,4 @@ from playWithPersonState import *
 
 
 if __name__ == "__main__":
-    playWithPerson()
+    playWithAI()

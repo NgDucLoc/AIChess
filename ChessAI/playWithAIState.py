@@ -34,6 +34,8 @@ def playWithAI():
     while running:
         human_turn = (game_state.white_to_move and player_one) or (
             not game_state.white_to_move and player_two)
+        if human_turn :
+            drawturn = 0
         for e in p.event.get():
             if e.type == p.QUIT:
                 p.quit()
@@ -120,13 +122,16 @@ def playWithAI():
 
         if not game_over:
             drawMoveLog(screen, game_state, move_log_font)
-
+            if drawturn ==0 :
+                drawText(screen, "Đến lượt bạn")
+                drawturn = 1
+            
         if game_state.checkmate:
             game_over = True
             if game_state.white_to_move:
-                drawEndGameText(screen, "Black wins by checkmate")
+                drawEndGameText(screen, "BẠN THUA")
             else:
-                drawEndGameText(screen, "White wins by checkmate")
+                drawEndGameText(screen, "BẠN THẮNG")
 
         elif game_state.stalemate:
             game_over = True
