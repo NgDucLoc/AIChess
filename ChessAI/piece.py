@@ -3,6 +3,11 @@ from const import *
 import os
 
 
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
+
+
+
 IMAGES = {}
 def loadImages():
     pieces = ['wp', 'wR', 'wN', 'wB', 'wK',
