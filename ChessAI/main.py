@@ -1,6 +1,3 @@
-
-from playWithAIState import *
-from playWithPersonState import *
 from menuState import *
 # def main():
 #     p.init()
