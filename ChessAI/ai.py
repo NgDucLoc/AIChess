@@ -161,7 +161,7 @@ def kingProtection(game_state, weight):
                 if board[i][j][0] == "w":
                     whiteSurrounding += 1
     score = (whiteSurrounding - blackSurrounding) * weight
-    return score
+    return score * weight
     
 
 def findBestMove(game_state, valid_moves, return_queue):

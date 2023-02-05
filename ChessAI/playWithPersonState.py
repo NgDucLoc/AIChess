@@ -3,7 +3,6 @@ import operation
 import ai
 import sys
 from multiprocessing import Process, Queue
-from board import *
 from piece import *
 from gameState import *
 from playWithAIState import *
@@ -26,17 +25,14 @@ def playWithPerson():
     square_selected = ()
     player_clicks = []  # this will keep track of player clicks (two tuples)
     game_over = False
-    # ai_thinking = False
     move_undone = False
     move_finder_process = None
     move_log_font = p.font.SysFont("Arial", 14, False, False)
     player_one = True  # if a human is playing white, then this will be True, else False
     player_two = False  # if a human is playing black, then this will be True, else False
 
-    count = 1
     while running:
-        # human_turn = (game_state.white_to_move and player_one) or (
-        #     not game_state.white_to_move and player_two)
+
         for e in p.event.get():
             if e.type == p.QUIT:
                 p.quit()
@@ -87,28 +83,7 @@ def playWithPerson():
                     move_made = False
                     animate = False
                     game_over = False
-                    # if ai_thinking:
-                    #     move_finder_process.terminate()
-                    #     ai_thinking = False
-                    move_undone = True
 
-        # AI move finder
-        # if not game_over and not human_turn and not move_undone:
-        #     if not ai_thinking:
-        #         ai_thinking = True
-        #         return_queue = Queue()  # used to pass data between threads
-        #         move_finder_process = Process(target=ai.findBestMove, args=(
-        #             game_state, valid_moves, return_queue))
-        #         move_finder_process.start()
-        #
-        #     if not move_finder_process.is_alive():
-        #         ai_move = return_queue.get()
-        #         if ai_move is None:
-        #             ai_move = ai.findRandomMove(valid_moves)
-        #         game_state.makeMove(ai_move)
-        #         move_made = True
-        #         animate = True
-        #         ai_thinking = False
 
         if move_made:
             if animate:
@@ -122,10 +97,7 @@ def playWithPerson():
         drawGameState(screen, game_state, valid_moves, square_selected)
         if not game_over:
             drawMoveLog(screen, game_state, move_log_font)
-            print(count)
-            if count ==1 :
-                count = 0
-                drawText(screen, " Đến lượt bạn")
+
             
 
         
