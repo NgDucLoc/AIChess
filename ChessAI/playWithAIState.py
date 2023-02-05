@@ -3,7 +3,6 @@ import operation
 import ai
 import sys
 from multiprocessing import Process, Queue
-from board import *
 from piece import *
 from gameState import *
 
@@ -27,9 +26,9 @@ def playWithAI():
     ai_thinking = False
     move_undone = False
     move_finder_process = None
-    move_log_font = p.font.SysFont("Arial", 14, False, False)
+    move_log_font = p.font.SysFont("Abadi", 24, False, False)
     player_one = True  # if a human is playing white, then this will be True, else False
-    player_two = False  # if a hyman is playing white, then this will be True, else False
+    player_two = False  # if a human is playing white, then this will be True, else False
 
     while running:
         human_turn = (game_state.white_to_move and player_one) or (

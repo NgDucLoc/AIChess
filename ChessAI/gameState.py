@@ -1,4 +1,4 @@
-from board import *
+
 import pygame as p
 from const import *
 from piece import *
@@ -45,11 +45,19 @@ def drawMoveLog(screen, game_state, font):
     p.draw.rect(screen, p.Color('white'), move_log_rect)
     move_log = game_state.move_log
     move_texts = []
-    for i in range(0, len(move_log), 2):
-        move_string = str(i // 2 + 1) + '. ' + str(move_log[i]) + " "
-        if i + 1 < len(move_log):
-            move_string += str(move_log[i + 1]) + "  "
-        move_texts.append(move_string)
+    if (len(move_log) > 38):
+        for i in range(len(move_log)-38, len(move_log), 2):
+            move_string = str(i // 2 + 1) + '. ' + 6*" " + str(move_log[i]) + 20*" "
+            if i + 1 < len(move_log):
+                move_string += str(move_log[i + 1]) + "  "
+            move_texts.append(move_string)
+    else:
+        for i in range(0, len(move_log), 2):
+            move_string = str(i // 2 + 1) + '. ' + 6*" " +str(move_log[i]) + 20*" "
+            if i + 1 < len(move_log):
+                move_string += str(move_log[i + 1]) + "  "
+            move_texts.append(move_string)
+
 
     moves_per_row = 1
     padding = 5
