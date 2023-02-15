@@ -6,6 +6,7 @@
 #Để có thể trải nghiệm AIChess bạn cần:
   -Download IDE pycharm
   -Download và cài path python cho máy tính
+	-Clone file AIChess từ git qua link: 
   -Download và import file AIChess vào pycharm
   -Sau đó bạn có thể bắt đầu trải nghiệm.
   
